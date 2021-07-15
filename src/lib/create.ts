@@ -1,3 +1,4 @@
+import { hasGit } from './../utils/index';
 import { logWithSpinner, stopSpinner } from './../utils/spinner';
 import { executeCommand, objToStr } from '../utils';
 import { writeFileTree } from '../utils/file';
@@ -42,9 +43,12 @@ export const create = async (projectName: string) => {
 
   writeFileTree(targetDir, files);
 
-  logWithSpinner(`🗃🗃🗃🗃`, chalk.cyan(`下载依赖中...`));
+  logWithSpinner(`🗃`, chalk.cyan(`下载依赖中...`));
   await executeCommand('npm i', targetDir);
-  await executeCommand('git init', targetDir);
+  if (hasGit) {
+    console.log('git init');
+    await executeCommand('git init', targetDir);
+  }
   stopSpinner(false);
   writeLogs(`\n 依赖下载完成...`);
 

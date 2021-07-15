@@ -62,3 +62,27 @@ export const objToStr = (obj: {}, space: number = 2) => {
 export const isFunction = (val: unknown) => {
   return typeof val === 'function';
 };
+
+/**
+ * 校验用户是否有安装git
+ */
+export const hasGit = () => {
+  try {
+    executeCommand('git --version', '.');
+    return true;
+  } catch (error) {
+    return false;
+  }
+};
+
+/**
+ * 校验用户是否有安装yarn
+ */
+export const hasYarn = () => {
+  try {
+    executeCommand('yarn --version', '.');
+    return true;
+  } catch (error) {
+    return false;
+  }
+};

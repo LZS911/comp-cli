@@ -1,6 +1,6 @@
 {
   "name": "ly-comp-cli",
-  "version": "1.0.1-2",
+  "version": "1.0.1-3",
   "main": "index.js",
   "license": "MIT",
   "bin": {

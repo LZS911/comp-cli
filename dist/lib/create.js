@@ -45,11 +45,11 @@ const create = (projectName) => __awaiter(void 0, void 0, void 0, function* () {
     pkg = yield react_1.default(projectName, targetDir, pkg, files);
     files['package.json'] = utils_1.objToStr(pkg);
     file_1.writeFileTree(targetDir, files);
-    // logWithSpinner(`🗃`, chalk.cyan(`下载依赖中...`));
+    spinner_1.logWithSpinner(`🗃🗃🗃🗃`, chalk.cyan(`下载依赖中...`));
     yield utils_1.executeCommand('npm i', targetDir);
     yield utils_1.executeCommand('git init', targetDir);
     spinner_1.stopSpinner(false);
-    // writeLogs(`\n 依赖下载完成...`);
+    log_1.writeLogs(`\n 依赖下载完成...`);
     log_1.writeLogs(` \n 项目${projectName}创建成功! \n cd ${projectName} \n npm run dev `, chalk.green);
 });
 exports.create = create;

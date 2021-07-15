@@ -42,11 +42,11 @@ export const create = async (projectName: string) => {
 
   writeFileTree(targetDir, files);
 
-  logWithSpinner(`🗃`, chalk.cyan(`下载依赖中...`));
+  // logWithSpinner(`🗃`, chalk.cyan(`下载依赖中...`));
   await executeCommand('npm i', targetDir);
   await executeCommand('git init', targetDir);
   stopSpinner(false);
-  writeLogs(`\n 依赖下载完成...`);
+  // writeLogs(`\n 依赖下载完成...`);
 
   writeLogs(` \n 项目${projectName}创建成功! \n cd ${projectName} \n npm run dev `, chalk.green);
 };

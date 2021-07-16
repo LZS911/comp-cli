@@ -23,7 +23,7 @@ export default defineConfig({
   plugins: [reactRefresh()],
   esbuild: {
     //配置全局注入 react 引用
-    // jsxInject: "import React from 'react'",
+     jsxInject: "import React from 'react'",
   },
   resolve: {
     // alias: [

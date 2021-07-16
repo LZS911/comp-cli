@@ -47,7 +47,7 @@ const create = (projectName) => __awaiter(void 0, void 0, void 0, function* () {
         pkg = yield react_1.default(projectName, targetDir, pkg, files);
         files['package.json'] = utils_1.objToStr(pkg);
         file_1.writeFileTree(targetDir, files);
-        spinner_1.logWithSpinner(`🗃`, chalk.cyan(`下载依赖中...`));
+        // logWithSpinner(`🗃`, chalk.cyan(`下载依赖中...`));
         if (index_1.hasGit) {
             yield utils_1.executeCommand('git init', targetDir);
             yield utils_1.executeCommand('git add -A', targetDir);

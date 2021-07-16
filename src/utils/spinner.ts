@@ -11,13 +11,13 @@ export const logWithSpinner = (symbol, msg) => {
     msg = symbol;
     symbol = chalk.green('✔');
   }
-  // if (lastMsg) {
-  //   // 清除上次的spinner
-  //   spinner.stopAndPersist({
-  //     symbol: lastMsg.symbol,
-  //     text: lastMsg.text,
-  //   });
-  // }
+  if (lastMsg) {
+    // 清除上次的spinner
+    spinner.stopAndPersist({
+      symbol: lastMsg.symbol,
+      text: lastMsg.text,
+    });
+  }
   spinner.text = ' ' + msg;
   lastMsg = {
     symbol: symbol + ' ',

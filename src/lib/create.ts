@@ -44,7 +44,7 @@ export const create = async (projectName: string) => {
 
     writeFileTree(targetDir, files);
 
-    logWithSpinner(`🗃`, chalk.cyan(`下载依赖中...`));
+    // logWithSpinner(`🗃`, chalk.cyan(`下载依赖中...`));
 
     if (hasGit) {
       await executeCommand('git init', targetDir);

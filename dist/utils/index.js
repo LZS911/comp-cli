@@ -1,6 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.isFunction = exports.objToStr = exports.executeCommand = exports.validateArgsLen = exports.checkNodeVersion = void 0;
+exports.hasYarn = exports.hasGit = exports.isFunction = exports.objToStr = exports.executeCommandWithInfo = exports.executeCommand = exports.validateArgsLen = exports.checkNodeVersion = void 0;
+const chalk = require("chalk");
 const log_1 = require("./log");
 const semver = require('semver');
 const execa = require('execa');
@@ -50,6 +51,32 @@ const executeCommand = (command, cwd, args) => {
 };
 exports.executeCommand = executeCommand;
 /**
+ * 在指定 路径下执行 指令
+ * 界面有信息
+ * @param command 指令
+ * @param cwd 路径
+ */
+const executeCommandWithInfo = (command, cwd, args) => {
+    return new Promise((resolve, reject) => {
+        const child = execa(command, args, {
+            cwd,
+            stdio: ['inherit', 'pipe', 'inherit'],
+        });
+        child.stdout.on('data', buffer => {
+            process.stdout.write(chalk.cyan(buffer));
+        });
+        child.on('close', code => {
+            console.log(code);
+            if (code !== 0) {
+                reject(new Error(`command failed: ${command}`));
+                return;
+            }
+            resolve();
+        });
+    });
+};
+exports.executeCommandWithInfo = executeCommandWithInfo;
+/**
  * 将对象转化为字符串
  *  JSON.stringify 第二个参数为处理函数和数组时
  * @param obj 需要转化的对象
@@ -63,3 +90,29 @@ const isFunction = (val) => {
     return typeof val === 'function';
 };
 exports.isFunction = isFunction;
+/**
+ * 校验用户是否有安装git
+ */
+const hasGit = () => {
+    try {
+        exports.executeCommand('git --version', '.');
+        return true;
+    }
+    catch (error) {
+        return false;
+    }
+};
+exports.hasGit = hasGit;
+/**
+ * 校验用户是否有安装yarn
+ */
+const hasYarn = () => {
+    try {
+        exports.executeCommand('yarn --version', '.');
+        return true;
+    }
+    catch (error) {
+        return false;
+    }
+};
+exports.hasYarn = hasYarn;

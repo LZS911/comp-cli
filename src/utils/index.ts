@@ -1,4 +1,5 @@
-import { throwError, throwInfo } from './log';
+import chalk = require('chalk');
+import { throwError, throwInfo, writeLogs } from './log';
 const semver = require('semver');
 const execa = require('execa');
 
@@ -47,6 +48,35 @@ export const executeCommand = (command: string, cwd: string, args?: string[]) =>
     [command, ...args] = command.split(/\s+/);
   }
   return execa(command, args, { cwd });
+};
+
+/**
+ * 在指定 路径下执行 指令
+ * 界面有信息
+ * @param command 指令
+ * @param cwd 路径
+ */
+export const executeCommandWithInfo = (command: string, cwd: string, args?: string[]) => {
+  return new Promise<void>((resolve, reject) => {
+    const child = execa(command, args, {
+      cwd,
+      stdio: ['inherit', 'pipe', 'inherit'],
+    });
+
+    child.stdout.on('data', buffer => {
+      process.stdout.write(chalk.cyan(buffer));
+    });
+
+    child.on('close', code => {
+      console.log(code);
+      if (code !== 0) {
+        reject(new Error(`command failed: ${command}`));
+        return;
+      }
+
+      resolve();
+    });
+  });
 };
 
 /**

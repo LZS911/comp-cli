@@ -12,7 +12,7 @@ const generateIndexHtml = name => {
   </head>
   <body>
     <div id="root"></div>
-    <script type="module" src="/src/index.tsx"></script>
+    <script type="module" src="/src/docs.tsx"></script>
   </body>
 </html>   
   `,

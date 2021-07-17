@@ -1,10 +1,10 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
+'use strict';
+Object.defineProperty(exports, '__esModule', { value: true });
 const generateIndexHtml = name => {
-    return {
-        targetDir: `./${name}`,
-        fileName: 'index.html',
-        template: `<!DOCTYPE html>
+  return {
+    targetDir: `./${name}`,
+    fileName: 'index.html',
+    template: `<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -14,10 +14,10 @@ const generateIndexHtml = name => {
   </head>
   <body>
     <div id="root"></div>
-    <script type="module" src="/src/index.tsx"></script>
+    <script type="module" src="/src/docs.tsx"></script>
   </body>
 </html>   
   `,
-    };
+  };
 };
 exports.default = generateIndexHtml;

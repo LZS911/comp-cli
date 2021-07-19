@@ -8,7 +8,6 @@ export const throwError = (str: string) => {
 
 export const throwInfo = (str: string) => {
   console.log(chalk.yellow(str));
-  process.exit(1);
 };
 
 export const writeLogs = (str: string, type: any = chalk.cyan) => {

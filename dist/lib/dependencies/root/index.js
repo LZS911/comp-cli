@@ -56,7 +56,7 @@ function createRoot(projectName, targetDir, cwd, files) {
                 yield utils_1.executeCommand(`rm -rf ${targetDir}`, cwd);
             }
         }
-        ['prettier', 'indexHtml', 'git', 'readme'].forEach(item => {
+        ['prettier', 'indexHtml', 'readme', 'git'].forEach(item => {
             const templateInfo = require(`./template/${item}`).default(projectName);
             files[templateInfo.fileName] = templateInfo.template;
         });

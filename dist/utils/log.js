@@ -10,7 +10,6 @@ const throwError = (str) => {
 exports.throwError = throwError;
 const throwInfo = (str) => {
     console.log(chalk.yellow(str));
-    process.exit(1);
 };
 exports.throwInfo = throwInfo;
 const writeLogs = (str, type = chalk.cyan) => {

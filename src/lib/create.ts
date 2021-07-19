@@ -41,7 +41,6 @@ export const create = async (projectName: string) => {
     pkg = await createReact(projectName, targetDir, pkg, files);
 
     files['package.json'] = objToStr(pkg);
-
     writeFileTree(targetDir, files);
 
     // logWithSpinner(`🗃`, chalk.cyan(`下载依赖中...`));
@@ -52,7 +51,6 @@ export const create = async (projectName: string) => {
       await executeCommand(`git commit -m 'init'`, targetDir);
     }
     await executeCommandWithInfo('npm', targetDir, ['i']);
-
     stopSpinner(false);
     writeLogs(`\n 依赖下载完成...`);
 

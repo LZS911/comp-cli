@@ -7,6 +7,10 @@ function createVite(name, pkg, files) {
             build: 'tsc && vite build',
             serve: 'vite preview',
             test: 'jest',
+            'lint:script': "eslint . --ext '.js,.jsx,.ts,.tsx'",
+            tsc: 'tsc --noEmit',
+            lint: 'npm run tsc && npm run lint:script',
+            update: "git add . && git commit -m 'update' && npm version patch && npm publish",
         },
         devDependencies: {
             vite: '^2.4.2',

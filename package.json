@@ -3,6 +3,12 @@
   "version": "1.0.2",
   "main": "index.js",
   "license": "MIT",
+  "scripts": {
+    "lint:script": "eslint . --ext '.js,.jsx,.ts,.tsx'",
+    "tsc": "tsc --noEmit",
+    "lint": "npm run tsc && npm run lint:script",
+    "update": "git add . && git commit -m 'update' && npm version patch && npm publish"
+  },
   "bin": {
     "ly-comp": "./dist/bin/index.js"
   },

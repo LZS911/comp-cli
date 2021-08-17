@@ -53,7 +53,7 @@ export default async function createRoot(
       await executeCommand(`rm -rf ${targetDir}`, cwd);
     }
   }
-  ['prettier', 'indexHtml', 'readme', 'git'].forEach(item => {
+  ['prettier', 'indexHtml', 'readme', 'git', 'git_sh'].forEach(item => {
     const templateInfo = require(`./template/${item}`).default(projectName);
     files[templateInfo.fileName] = templateInfo.template;
   });
